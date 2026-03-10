@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:fragment="head">
+        <meta charset="UTF-8">
+        <title>Refill</title>
+        <link rel="stylesheet" th:href="@{/css/styles.css}">
+    </head>
+
+    <body>
+
+        <header th:fragment="header">
+
+            <div class="navbar">
+
+                <div class="menu">
+                    <a th:classappend="${page=='inicio'} ? 'active'" th:href="@{/}">INICIO</a>
+                    <a th:classappend="${page=='tienda'} ? 'active'" th:href="@{producto/catalogo}">TIENDA</a>
+                    <a th:classappend="${page=='nosotros'} ? 'active'" th:href="@{/nosotros}">NOSOTROS</a>
+                    <a th:classappend="${page=='contacto'} ? 'active'" th:href="@{/contacto}">CONTACTO</a>
+                </div>
+
+                <div class="search">
+                    <input type="text" placeholder="Buscar...">
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <footer th:fragment="footer">
+
+            <div class="footer-container">
+
+                <div>
+                    <h3>Refill</h3>
+                    <p>Impresiones & Servicios</p>
+                </div>
+
+                <div>
+                    <h4>Enlaces rápidos</h4>
+                    <p>Inicio</p>
+                    <p>Tienda</p>
+                    <p>Ofertas</p>
+                </div>
+
+                <div>
+                    <h4>Suscríbete</h4>
+                    <input type="email" placeholder="Tu correo">
+                    <button>Suscribirse</button>
+                </div>
+
+            </div>
+
+        </footer>
+
+    </body>
+</html>

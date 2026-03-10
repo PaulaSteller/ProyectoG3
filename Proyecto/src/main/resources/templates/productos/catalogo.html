@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{general/fragmentos :: head}"></head>
+
+    <body>
+
+        <header th:replace="~{general/fragmentos :: header}"></header>
+
+        <h1 style="text-align:center;">Catálogo de productos</h1>
+
+
+        <div class="catalogo" th:fragment="tarjetas">
+
+            <div class="card">
+                <img th:src="@{/img/dellg15.jpg}">
+                <h3>Portátil Dell G15 5530</h3>
+                <p>₡850,000</p>
+                <button>Añadir al carrito</button>
+            </div>
+
+            <div class="card">
+                <img th:src="@{/img/asusrog.jpg}">
+                <h3>ASUS ROG Strix G16CH</h3>
+                <p>₡775,000</p>
+                <button>Añadir al carrito</button>
+            </div>
+
+            <div class="card">
+                <img th:src="@{/img/hpvictus.jpg}">
+                <h3>Laptop HP Victus</h3>
+                <p>₡750,000</p>
+                <button>Añadir al carrito</button>
+            </div>
+
+            <div class="card">
+                <img th:src="@{/img/epson673.jpg}">
+                <h3>Tinta Epson 673</h3>
+                <p>₡7,000</p>
+                <button>Añadir al carrito</button>
+            </div>
+
+            <div class="card">
+                <img th:src="@{/img/epsonl4150.jpg}">
+                <h3>Impresora Epson L4150</h3>
+                <p>₡150,000</p>
+                <button>Añadir al carrito</button>
+            </div>
+
+            <div class="card">
+                <img th:src="@{/img/xiaomia24i.jpg}">
+                <h3>Monitor Xiaomi A24i</h3>
+                <p>₡40,900</p>
+                <button>Añadir al carrito</button>
+            </div>
+
+            <div class="card">
+                <img th:src="@{/img/inyecciontinta.jpg}">
+                <h3>Inyección de tinta</h3>
+                <p>₡4,500</p>
+                <button>Añadir al carrito</button>
+            </div>
+
+            <div class="card">
+                <img th:src="@{/img/asus165hz.jpg}">
+                <h3>Monitor 23.8 Asus 165hz</h3>
+                <p>₡120,000</p>
+                <button>Añadir al carrito</button>
+            </div>
+
+            <div class="card">
+                <img th:src="@{/img/razerbasilisk.jpg}">
+                <h3>Mouse Razer BASILISK</h3>
+                <p>₡34,000</p>
+                <button>Añadir al carrito</button>
+            </div>
+
+
+            <div class="card">
+                <img th:src="@{/img/monitorxiaomi.jpg}">
+                <h3>Monitor Xiaomi</h3>
+                <p>₡65,000</p>
+                <button>Añadir al carrito</button>
+            </div>
+
+        </div>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+    </body>
+
+</html>
