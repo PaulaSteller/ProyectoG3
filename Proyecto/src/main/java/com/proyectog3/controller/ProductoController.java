@@ -17,20 +17,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/producto")
 public class ProductoController {
 
     @Autowired
     private ProductoRepository productoRepository;
 
-    @GetMapping("/catalogo")
-    public String catalogo(Model model) {
+    @GetMapping("/tienda")
+    public String tienda(Model model) {
         var productos = productoRepository.findByDisponibleTrue();
         model.addAttribute("productos", productos);
 
         // Marca la sección activa
         model.addAttribute("page", "tienda");
 
-        return "productos/catalogo";
+        return "productos/catalogo"; // templates/productos/catalogo.html
     }
 }

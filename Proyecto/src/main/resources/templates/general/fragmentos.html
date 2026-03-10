@@ -3,7 +3,7 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
 
     <head th:fragment="head">
@@ -15,23 +15,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
 
         <header th:fragment="header">
-
-            <div class="navbar">
-
-                <div class="menu">
-                    <a th:classappend="${page=='inicio'} ? 'active'" th:href="@{/}">INICIO</a>
-                    <a th:classappend="${page=='tienda'} ? 'active'" th:href="@{producto/catalogo}">TIENDA</a>
-                    <a th:classappend="${page=='nosotros'} ? 'active'" th:href="@{/nosotros}">NOSOTROS</a>
-                    <a th:classappend="${page=='contacto'} ? 'active'" th:href="@{/contacto}">CONTACTO</a>
-                </div>
-
-                <div class="search">
+            <nav class="navbar">
+                <ul class="menu">
+                    <li><a href="/" class="active">INICIO</a></li>
+                    <li><a href="/tienda">TIENDA</a></li>
+                    <li><a href="/nosotros">NOSOTROS</a></li>
+                    <li><a href="/contacto">CONTACTO</a></li>
+                </ul>
+                <div class="search-box">
                     <input type="text" placeholder="Buscar...">
+                    <button><i class="fa fa-search"></i></button>
                 </div>
-
-            </div>
-
+            </nav>
         </header>
+
 
 
         <footer th:fragment="footer">

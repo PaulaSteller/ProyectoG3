@@ -3,23 +3,19 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{general/fragmentos :: head}"></head>
+    <head th:replace="~{general/fragmentos :: head}"></head>
 
-<body>
+    <body>
 
-    <header th:replace="~{general/fragmentos :: header}"></header>
+        <header th:replace="~{general/fragmentos :: header}"></header>
 
-    <!-- SECCIÓN DE INICIO (SERVICIOS) -->
-    <section th:replace="~{servicios/listado :: servicios}"></section>
 
-    <!-- SECCIÓN DE TIENDA -->
-    <section th:replace="~{productos/catalogo :: tarjetas}"></section>
+        <section th:replace="~{servicios/listado :: servicios}"></section>
 
-    <footer th:replace="~{general/fragmentos :: footer}"></footer>
 
-</body>
+    </body>
 
 </html>
