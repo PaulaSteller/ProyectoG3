@@ -20,74 +20,86 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <img th:src="@{/img/dellg15.jpg}">
                 <h3>Portátil Dell G15 5530</h3>
                 <p>₡850,000</p>
-                <button>Añadir al carrito</button>
+                <button onclick="agregarYIr(1, 'Portátil Dell G15 5530', 850000, '/img/dellg15.jpg')">Añadir al carrito</button>
             </div>
 
             <div class="card">
                 <img th:src="@{/img/asusrog.jpg}">
                 <h3>ASUS ROG Strix G16CH</h3>
                 <p>₡775,000</p>
-                <button>Añadir al carrito</button>
+                <button onclick="agregarYIr(2, 'ASUS ROG Strix G16CH', 775000, '/img/asusrog.jpg')">Añadir al carrito</button>
             </div>
 
             <div class="card">
                 <img th:src="@{/img/hpvictus.jpg}">
                 <h3>Laptop HP Victus</h3>
                 <p>₡750,000</p>
-                <button>Añadir al carrito</button>
+                <button onclick="agregarYIr(3, 'Laptop HP Victus', 750000, '/img/hpvictus.jpg')">Añadir al carrito</button>
             </div>
 
             <div class="card">
                 <img th:src="@{/img/epson673.jpg}">
                 <h3>Tinta Epson 673</h3>
                 <p>₡7,000</p>
-                <button>Añadir al carrito</button>
+                <button onclick="agregarYIr(4, 'Tinta Epson 673', 7000, '/img/epson673.jpg')">Añadir al carrito</button>
             </div>
 
             <div class="card">
                 <img th:src="@{/img/epsonl4150.jpg}">
                 <h3>Impresora Epson L4150</h3>
                 <p>₡150,000</p>
-                <button>Añadir al carrito</button>
+                <button onclick="agregarYIr(5, 'Impresora Epson L4150', 150000, '/img/epsonl4150.jpg')">Añadir al carrito</button>
             </div>
 
             <div class="card">
                 <img th:src="@{/img/xiaomia24i.jpg}">
                 <h3>Monitor Xiaomi A24i</h3>
                 <p>₡40,900</p>
-                <button>Añadir al carrito</button>
+                <button onclick="agregarYIr(6, 'Monitor Xiaomi A24i', 40900, '/img/xiaomia24i.jpg')">Añadir al carrito</button>
             </div>
 
             <div class="card">
                 <img th:src="@{/img/inyecciontinta.jpg}">
                 <h3>Inyección de tinta</h3>
                 <p>₡4,500</p>
-                <button>Añadir al carrito</button>
+                <button onclick="agregarYIr(7, 'Inyección de tinta', 4500, '/img/inyecciontinta.jpg')">Añadir al carrito</button>
             </div>
 
             <div class="card">
                 <img th:src="@{/img/asus165hz.jpg}">
                 <h3>Monitor 23.8 Asus 165hz</h3>
                 <p>₡120,000</p>
-                <button>Añadir al carrito</button>
+                <button onclick="agregarYIr(8, 'Monitor 23.8 Asus 165hz', 120000, '/img/asus165hz.jpg')">Añadir al carrito</button>
             </div>
 
             <div class="card">
                 <img th:src="@{/img/razerbasilisk.jpg}">
                 <h3>Mouse Razer BASILISK</h3>
                 <p>₡34,000</p>
-                <button>Añadir al carrito</button>
+                <button onclick="agregarYIr(9, 'Mouse Razer BASILISK', 34000, '/img/razerbasilisk.jpg')">Añadir al carrito</button>
             </div>
-
 
             <div class="card">
                 <img th:src="@{/img/monitorxiaomi.jpg}">
                 <h3>Monitor Xiaomi</h3>
                 <p>₡65,000</p>
-                <button>Añadir al carrito</button>
+                <button onclick="agregarYIr(10, 'Monitor Xiaomi', 65000, '/img/monitorxiaomi.jpg')">Añadir al carrito</button>
             </div>
 
         </div>
+
+        <script>
+        function agregarYIr(id, nombre, precio, img) {
+            let carrito = JSON.parse(localStorage.getItem('refill_carrito') || '{}');
+            if (carrito[id]) {
+                carrito[id].qty++;
+            } else {
+                carrito[id] = { id: id, name: nombre, price: precio, img: img, qty: 1 };
+            }
+            localStorage.setItem('refill_carrito', JSON.stringify(carrito));
+            window.location.href = '/carrito';
+        }
+        </script>
 
         <footer th:replace="~{general/fragmentos :: footer}"></footer>
 
