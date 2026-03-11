@@ -33,6 +33,12 @@ public class ServicioController {
 
         return "servicios/listado";
     }
+        // Esta es una parte de la actualizacion de guia
+    @GetMapping("/guia")
+    public String guiaUso(Model model) {
+        model.addAttribute("page", "guia");
+        return "servicios/guia";
+}
 
     // Listado de servicios
     @GetMapping("/listado")
