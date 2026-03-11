@@ -1,49 +1,233 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{general/fragmentos :: head}"></head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Nosotros</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+        <style>
+
+            body{
+                background:#f2f2f2;
+            }
+
+            /* banner */
+
+            .banner{
+                background:#9e9e9e;
+                color:white;
+                padding:40px;
+                border-radius:6px;
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+            }
+
+            .refill-logo span:nth-child(1){
+                color:#000;
+            }
+            .refill-logo span:nth-child(2){
+                color:#000;
+            }
+            .refill-logo span:nth-child(3){
+                color:#3399ff;
+            }
+            .refill-logo span:nth-child(4){
+                color:#8b008b;
+            }
+            .refill-logo span:nth-child(5){
+                color:#ffd633;
+            }
+            .refill-logo span:nth-child(6){
+                color:#ffd633;
+            }
+
+            .refill-logo{
+                font-weight:bold;
+                font-size:28px;
+            }
+
+            /* historia */
+
+            .historia{
+                margin-top:40px;
+            }
+
+            .historia img{
+                width:100%;
+                border-radius:10px;
+                box-shadow:0 4px 10px rgba(0,0,0,0.2);
+            }
+
+            /* equipo */
+
+            .equipo{
+                margin-top:60px;
+                text-align:center;
+            }
+
+            .card-equipo{
+                background:#e6e6e6;
+                padding:30px;
+                border-radius:10px;
+                box-shadow:0 2px 6px rgba(0,0,0,0.2);
+            }
+
+            .card-equipo i{
+                font-size:35px;
+                margin-bottom:15px;
+            }
+
+        </style>
+    <head th:replace="~{general/fragmentos :: head}"></head>
+</head>
 
 <body>
+    <header th:replace="~{general/fragmentos :: header}"></header>
+    <div class="container mt-4">
 
-<header th:replace="~{general/fragmentos :: header}"></header>
+        <!-- BANNER -->
 
-<section class="nosotros">
+        <div class="banner">
 
-    <h1>Nosotros</h1>
+            <div>
 
-    <div class="historia">
-        <h2>Nuestra historia</h2>
-        <p>
-            Desde nuestros comienzos, en Refill hemos trabajado con una misión clara:
-            convertirnos en el socio tecnológico que potencie la productividad de nuestros clientes.
-            Lo que inició como un servicio especializado en recarga de tintas y asistencia técnica,
-            hoy se ha convertido en una empresa integral que ofrece mantenimiento preventivo,
-            reparación de equipos y venta de insumos tecnológicos.
-        </p>
+                <div class="refill-logo">
+                    <span>R</span><span>e</span><span>f</span><span>i</span><span>l</span><span>l</span>
+                </div>
+
+                <h2>Nosotros</h2>
+
+                <p>
+                    En Refill nos dedicamos a brindar soluciones prácticas y responsables
+                    dentro del campo tecnológico.
+                </p>
+
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692"
+                 width="220">
+
+        </div>
+
+
+        <hr class="mt-4">
+
+
+        <!-- HISTORIA -->
+
+        <div class="historia">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-6">
+
+                    <h2>Nuestra historia</h2>
+
+                    <p>
+                        Desde nuestros comienzos, en Refill hemos trabajado con una misión clara:
+                        convertirnos en el socio tecnológico y de mantenimiento que potencie la
+                        productividad de nuestros clientes.
+                    </p>
+
+                    <p>
+                        Lo que inició como un servicio especializado en recarga de tintas
+                        y asistencia técnica, hoy se ha consolidado como una empresa integral
+                        que brinda mantenimiento preventivo y correctivo, reparaciones
+                        de equipos, además de la venta de insumos y dispositivos.
+                    </p>
+
+                    <p>
+                        Nuestro desarrollo ha estado respaldado por la confianza de empresas
+                        y profesionales que buscan soluciones ágiles y productos confiables.
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <img src="/img/ImagenLocalRefill.jpeg">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <hr class="mt-5">
+
+
+        <!-- EQUIPO -->
+
+        <div class="equipo">
+
+            <h2>Nuestro equipo</h2>
+
+            <div class="row mt-4 g-4">
+
+                <div class="col-md-4">
+
+                    <div class="card-equipo">
+
+                        <i class="fa-solid fa-bullseye"></i>
+
+                        <h3>Misión</h3>
+
+                        <p>
+                            Ofrecer soluciones a nuestros clientes.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="card-equipo">
+
+                        <i class="fa-solid fa-heart"></i>
+
+                        <h3>Valores</h3>
+
+                        <p>
+                            Responsabilidad, transparencia y honestidad.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="card-equipo">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                        <h3>Visión</h3>
+
+                        <p>
+                            Convertirnos en el referente destacado dentro del sector
+                            de suministros tecnológicos.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-
-    <div class="mvv">
-
-        <div class="card">
-            <h3>Misión</h3>
-            <p>Ofrecer soluciones tecnológicas que ayuden a nuestros clientes a mejorar su productividad.</p>
-        </div>
-
-        <div class="card">
-            <h3>Visión</h3>
-            <p>Convertirnos en el referente dentro del sector de mantenimiento y suministros tecnológicos.</p>
-        </div>
-
-        <div class="card">
-            <h3>Valores</h3>
-            <p>Responsabilidad, transparencia y honestidad en cada servicio que brindamos.</p>
-        </div>
-
-    </div>
-
-</section>
-
-<footer th:replace="~{general/fragmentos :: footer}"></footer>
 
 </body>
 </html>
