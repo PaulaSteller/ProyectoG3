@@ -131,7 +131,22 @@ body {
     padding:40px;
     text-align:center;
 }
-
+/* Apartado de catalogo para que se vea en fila y orden en el navbar*/
+.catalogo {
+    display: grid;
+    grid-template-columns: repeat(5 , 1fr);
+    gap: 25px;
+    padding: 40px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+.guia-seccion {
+    background: #e0e0e0;
+    border-radius: 10px;
+    padding: 25px 30px;
+    margin-bottom: 25px;
+    border-left: 5px solid #007BFF;
+}
 .soporte{
     display:flex;
     justify-content:center;
@@ -162,3 +177,4 @@ body {
 .info-contacto{
     margin-top:30px;
 }
+
