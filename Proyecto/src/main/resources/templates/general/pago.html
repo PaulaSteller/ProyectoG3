@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{general/fragmentos :: head}">
+        <style>
+            /* Estilos embebidos para la página de pago */
+        </style>
+    </head>
+
+    <body>
+
+        <header th:replace="~{general/fragmentos :: header}"></header>
+
+        <style>
+            .pago-page {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 3rem 1.5rem;
+                font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            }
+
+            .pago-hero {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            .pago-hero h1 {
+                font-size: 2rem;
+                font-weight: 900;
+                color: #1a1a2e;
+                margin-bottom: 0.5rem;
+            }
+
+            .pago-hero h1 span {
+                color: #00bcd4;
+            }
+
+            .pago-hero p {
+                color: #8888a0;
+                font-size: 0.95rem;
+            }
+
+            .metodos-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 1.5rem;
+                margin-bottom: 3rem;
+            }
+
+            .metodo-card {
+                background: #ffffff;
+                border-radius: 16px;
+                padding: 2rem 1.5rem;
+                box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+                border: 2px solid transparent;
+                transition: all 0.25s ease;
+                cursor: pointer;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .metodo-card::before {
+                content: '';
+                position: absolute;
+                top: 0; left: 0; right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, var(--card-color1), var(--card-color2));
+                transform: scaleX(0);
+                transition: transform 0.3s ease;
+                transform-origin: left;
+            }
+
+            .metodo-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 32px rgba(0,0,0,0.12);
+                border-color: var(--card-color1);
+            }
+
+            .metodo-card:hover::before {
+                transform: scaleX(1);
+            }
+
+            .metodo-card.tarjeta   { --card-color1: #00bcd4; --card-color2: #0097a7; }
+            .metodo-card.efectivo  { --card-color1: #00c853; --card-color2: #00897b; }
+            .metodo-card.transferencia { --card-color1: #e91e8c; --card-color2: #c2185b; }
+            .metodo-card.sinpe     { --card-color1: #ffc107; --card-color2: #ff8f00; }
+            .metodo-card.paypal    { --card-color1: #1a1a2e; --card-color2: #003087; }
+
+            .metodo-icon {
+                font-size: 2.8rem;
+                margin-bottom: 1rem;
+                display: block;
+            }
+
+            .metodo-titulo {
+                font-weight: 800;
+                font-size: 1rem;
+                color: #1a1a2e;
+                margin-bottom: 0.4rem;
+            }
+
+            .metodo-desc {
+                font-size: 0.78rem;
+                color: #8888a0;
+                line-height: 1.6;
+            }
+
+            .metodo-badge {
+                display: inline-block;
+                margin-top: 0.75rem;
+                padding: 3px 10px;
+                border-radius: 20px;
+                font-size: 0.62rem;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                background: rgba(0,188,212,0.1);
+                color: #00bcd4;
+            }
+
+            .metodo-card.efectivo  .metodo-badge { background:rgba(0,200,83,0.1);  color:#00c853; }
+            .metodo-card.transferencia .metodo-badge { background:rgba(233,30,140,0.1); color:#e91e8c; }
+            .metodo-card.sinpe     .metodo-badge { background:rgba(255,193,7,0.12); color:#e6a800; }
+            .metodo-card.paypal    .metodo-badge { background:rgba(26,26,46,0.08);  color:#1a1a2e; }
+
+            /* Sección de info */
+            .info-section {
+                background: #ffffff;
+                border: 1px solid #e0e0ee;
+                border-radius: 16px;
+                padding: 2.5rem 2rem;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                margin-bottom: 2rem;
+                box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            }
+
+            .info-col h3 {
+                font-size: 0.75rem;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: #00bcd4;
+                margin-bottom: 1rem;
+            }
+
+            .info-item {
+                display: flex;
+                align-items: flex-start;
+                gap: 0.75rem;
+                margin-bottom: 0.85rem;
+            }
+
+            .info-dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #e91e8c;
+                margin-top: 5px;
+                flex-shrink: 0;
+            }
+
+            .info-item p {
+                font-size: 0.82rem;
+                color: #8888a0;
+                line-height: 1.5;
+            }
+
+            .info-item strong {
+                color: #1a1a2e;
+                display: block;
+                margin-bottom: 2px;
+            }
+
+            /* CTA */
+            .pago-cta {
+                text-align: center;
+                padding: 2rem;
+                background: linear-gradient(135deg, rgba(0,188,212,0.06), rgba(233,30,140,0.06));
+                border-radius: 16px;
+                border: 1px solid #e0e0ee;
+            }
+
+            .pago-cta p {
+                color: #8888a0;
+                font-size: 0.85rem;
+                margin-bottom: 1rem;
+            }
+
+            .btn-ir-tienda {
+                display: inline-block;
+                padding: 12px 32px;
+                background: linear-gradient(135deg, #e91e8c, #00bcd4);
+                color: white;
+                border-radius: 10px;
+                text-decoration: none;
+                font-weight: 800;
+                font-size: 0.82rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                transition: all 0.2s;
+                box-shadow: 0 4px 16px rgba(233,30,140,0.3);
+            }
+
+            .btn-ir-tienda:hover {
+                opacity: 0.9;
+                transform: translateY(-2px);
+                box-shadow: 0 7px 22px rgba(233,30,140,0.38);
+            }
+
+            @media(max-width: 700px) {
+                .info-section { grid-template-columns: 1fr; }
+                .pago-hero h1 { font-size: 1.5rem; }
+            }
+        </style>
+
+        <div class="pago-page">
+
+            <div class="pago-hero">
+                <h1>Métodos de <span>Pago</span></h1>
+                <p>Aceptamos múltiples formas de pago para tu comodidad</p>
+            </div>
+
+            <div class="metodos-grid">
+
+                <div class="metodo-card tarjeta">
+                    <span class="metodo-icon">💳</span>
+                    <div class="metodo-titulo">Tarjeta de Crédito / Débito</div>
+                    <div class="metodo-desc">Visa, Mastercard y American Express. Pago seguro con cifrado SSL.</div>
+                    <span class="metodo-badge">Disponible</span>
+                </div>
+
+                <div class="metodo-card efectivo">
+                    <span class="metodo-icon">💵</span>
+                    <div class="metodo-titulo">Efectivo</div>
+                    <div class="metodo-desc">Pago en tienda física. Presentá tu orden y cancelá en caja.</div>
+                    <span class="metodo-badge">En tienda</span>
+                </div>
+
+                <div class="metodo-card transferencia">
+                    <span class="metodo-icon">🏦</span>
+                    <div class="metodo-titulo">Transferencia Bancaria</div>
+                    <div class="metodo-desc">Transferencia a cuenta IBAN. Confirmación en 24 horas hábiles.</div>
+                    <span class="metodo-badge">Disponible</span>
+                </div>
+
+                <div class="metodo-card sinpe">
+                    <span class="metodo-icon">📱</span>
+                    <div class="metodo-titulo">SINPE Móvil</div>
+                    <div class="metodo-desc">Pago inmediato vía SINPE. Confirmación al instante.</div>
+                    <span class="metodo-badge">Inmediato</span>
+                </div>
+
+                <div class="metodo-card paypal">
+                    <span class="metodo-icon">🌐</span>
+                    <div class="metodo-titulo">PayPal</div>
+                    <div class="metodo-desc">Pago internacional seguro con protección al comprador.</div>
+                    <span class="metodo-badge">Internacional</span>
+                </div>
+
+            </div>
+
+            <div class="info-section">
+                <div class="info-col">
+                    <h3>Información de pago</h3>
+                    <div class="info-item">
+                        <div class="info-dot"></div>
+                        <p><strong>Transferencia IBAN</strong>CR21 0152 0200 1026 8400 66 — Banco Nacional</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-dot"></div>
+                        <p><strong>SINPE Móvil</strong>+506 8888-0000 — A nombre de Refill S.A.</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-dot"></div>
+                        <p><strong>Comprobante</strong>Enviá el comprobante a pagos@refill.cr para confirmar tu pedido.</p>
+                    </div>
+                </div>
+                <div class="info-col">
+                    <h3>Seguridad y garantías</h3>
+                    <div class="info-item">
+                        <div class="info-dot" style="background:#ffc107"></div>
+                        <p><strong>Pagos 100% seguros</strong>Toda transacción está protegida con cifrado de extremo a extremo.</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-dot" style="background:#ffc107"></div>
+                        <p><strong>Devoluciones</strong>Si hay algún problema, te devolvemos el dinero en 5 días hábiles.</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-dot" style="background:#ffc107"></div>
+                        <p><strong>Soporte</strong>¿Dudas sobre tu pago? Escribinos a soporte@refill.cr</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pago-cta">
+                <p>¿Listo para comprar? Explorá nuestros productos y elegí el método de pago que más te convenga.</p>
+                <a href="/tienda" class="btn-ir-tienda">Ir a la tienda →</a>
+            </div>
+
+        </div>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+    </body>
+</html>
