@@ -60,25 +60,10 @@
                 overflow: hidden;
             }
 
-            .metodo-card::before {
-                content: '';
-                position: absolute;
-                top: 0; left: 0; right: 0;
-                height: 4px;
-                background: linear-gradient(90deg, var(--card-color1), var(--card-color2));
-                transform: scaleX(0);
-                transition: transform 0.3s ease;
-                transform-origin: left;
-            }
-
             .metodo-card:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 10px 32px rgba(0,0,0,0.12);
                 border-color: var(--card-color1);
-            }
-
-            .metodo-card:hover::before {
-                transform: scaleX(1);
             }
 
             .metodo-card.tarjeta   { --card-color1: #00bcd4; --card-color2: #0097a7; }
