@@ -68,7 +68,8 @@ body {
   font-weight: bold;
 }
 
-.menu li a.active {
+.menu li a:hover,
+.menu li a:focus {
   color: #00B6FF;
 }
 
@@ -128,22 +129,87 @@ body {
   text-align:center;
 }
 
-
 .catalogo {
-    display: grid;
-    grid-template-columns: repeat(5 , 1fr);
-    gap: 25px;
-    padding: 40px;
-    max-width: 1600px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5 , 1fr);
+  gap: 25px;
+  padding: 40px;
+  max-width: 1600px;
+  margin: 0 auto;
 }
+
+.producto{
+  background:#f5f5f5;
+  border-radius:10px;
+  padding:15px;
+  text-align:center;
+  transition: transform 0.3s;
+}
+
+.producto:hover{
+  transform:scale(1.05);
+}
+
+.producto img{
+  width:100%;
+  border-radius:10px;
+  margin-bottom:10px;
+}
+
+.producto h3{
+  font-size:16px;
+  margin:10px 0;
+}
+
+.producto p{
+  font-size:14px;
+  color:#555;
+}
+
+.producto strong{
+  color:#007BFF;
+}
+
+/* ===========================
+   PROMOCIONES
+=========================== */
+
+.promociones{
+  padding:40px 0;
+}
+
+.promociones h2{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.promociones-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:25px;
+  max-width:1000px;
+  margin:0 auto;
+  padding:20px;
+}
+
+.promociones-grid .producto:nth-child(4){
+  grid-column:1 / 2;
+  justify-self:end;
+}
+
+.promociones-grid .producto:nth-child(5){
+  grid-column:3 / 4;
+  justify-self:start;
+}
+
 .guia-seccion {
-    background: #e0e0e0;
-    border-radius: 10px;
-    padding: 25px 30px;
-    margin-bottom: 25px;
-    border-left: 5px solid #007BFF;
+  background: #e0e0e0;
+  border-radius: 10px;
+  padding: 25px 30px;
+  margin-bottom: 25px;
+  border-left: 5px solid #007BFF;
 }
+
 .soporte {
   display:flex;
   justify-content:center;
@@ -177,7 +243,8 @@ body {
 
 /* ===========================
    Parte superior: contacto
-   =========================== */
+=========================== */
+
 .footer-top {
   background-color: #333; 
   color: #fff;
@@ -236,8 +303,9 @@ body {
 }
 
 /* ===========================
-   Parte inferior
-   =========================== */
+   Parte inferior del footer
+=========================== */
+
 .footer-bottom {
   background-color: #555; 
   color: #fff;
@@ -257,7 +325,6 @@ body {
   text-align: center;
 }
 
-/* Logo */
 .footer-logo {
   display: flex;
   flex-direction: column;
@@ -276,13 +343,16 @@ body {
   padding: 0;
   margin: 0;
 }
+
 .footer-links ul li {
   margin-bottom: 8px;
 }
+
 .footer-links ul li a {
   color: #fff;
   text-decoration: none;
 }
+
 .footer-links ul li a:hover {
   color: #00b894;
 }
@@ -291,19 +361,23 @@ body {
 .footer-social h4 {
   margin-bottom: 10px;
 }
+
 .footer-social ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 .footer-social ul li {
   margin-bottom: 8px;
 }
+
 .footer-social ul li a {
   color: #fff;
   text-decoration: underline;
   transition: color 0.3s;
 }
+
 .footer-social ul li a:hover {
   color: #00b894;
 }
@@ -312,20 +386,24 @@ body {
 .footer-subscribe h4 {
   margin-bottom: 10px;
 }
+
 .footer-subscribe p {
   font-size: 14px;
   margin-bottom: 10px;
 }
+
 .footer-subscribe form {
   display: flex;
   gap: 10px;
 }
+
 .footer-subscribe input {
   flex: 1;
   padding: 12px;
   border: none;
   border-radius: 25px;
 }
+
 .footer-subscribe button {
   background-color: #1f87e4;
   color: #fff;
@@ -335,6 +413,7 @@ body {
   cursor: pointer;
   transition: background 0.3s;
 }
+
 .footer-subscribe button:hover {
   background-color: #0056b3;
 }
@@ -349,13 +428,15 @@ body {
   border-top: 1px solid #777;
   padding-top: 15px;
 }
+
 /* ===========================
    Categorías con efecto flip
-   =========================== */
+=========================== */
+
 .flip-card {
   width: 150px;
   height: 150px;
-  perspective: 1000px; /* crea el efecto 3D */
+  perspective: 1000px;
 }
 
 .flip-card-inner {
@@ -395,4 +476,3 @@ body {
   color: #fff;
   text-align: center;
 }
-
