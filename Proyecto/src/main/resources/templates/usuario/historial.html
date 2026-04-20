@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Historial</title>
+        <link rel="stylesheet" th:href="@{/css/styles.css}">
+    </head>
+    <body>
+
+        <div th:replace="general/fragmentos :: header"></div>
+
+        <div class="form-container">
+            <h2>Historial de compras</h2>
+
+            <table style="width:100%; border-collapse: collapse; margin-top:20px;">
+                <tr>
+                    <th style="border-bottom:1px solid #ccc; padding:10px;">Fecha</th>
+                    <th style="border-bottom:1px solid #ccc; padding:10px;">Total</th>
+                </tr>
+
+                <tr th:each="compra : ${compras}">
+                    <td style="padding:10px;" th:text="${compra.fecha}"></td>
+                    <td style="padding:10px;" th:text="${compra.total}"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div th:replace="general/fragmentos :: footer"></div>
+
+    </body>
+</html>
