@@ -32,3 +32,4 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
         @Param("soloDisponibles") boolean soloDisponibles
     );
 }
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    
+    <head th:replace="~{general/fragmentos :: head}">
+        <title>Seguimiento de Servicio</title>
+    </head>
+    
+    <body style="background-color: #f2f2f2;">
+        
+        <header th:replace="~{general/fragmentos :: header}"></header>
+
+        <div style="max-width: 650px; margin: 60px auto; padding: 40px; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center;">
+            
+            <div style="font-size: 2.5rem; color: #1e88e5; margin-bottom: 15px;">
+                <i class="fa-solid fa-laptop-medical"></i>
+            </div>
+            <h2 style="color: #333; margin-bottom: 10px; font-weight: 800;">Estado de Reparacion</h2>
+            <p style="color: #666; margin-bottom: 35px; font-size: 0.95rem;">Ingrese su numero de orden asignado en tienda para consultar el estado actual de su equipo.</p>
+
+            <form action="/seguimiento" method="post" style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
+                <input type="text" name="numeroOrden" th:value="${numeroOrden}" placeholder="Ej. ORD-1001" required 
+                       style="padding: 14px 20px; border: 2px solid #e0e0e0; border-radius: 30px; width: 65%; outline: none; font-size: 1rem; transition: border-color 0.3s;">
+                <button type="submit" 
+                        style="background: #1e88e5; color: white; border: none; padding: 14px 30px; border-radius: 30px; cursor: pointer; font-weight: bold; transition: background 0.3s;">
+                    Rastrear
+                </button>
+            </form>
+
+            <p th:if="${error}" th:text="${error}" style="color: #d9534f; font-weight: bold; margin-top: 15px;"></p>
+
+            <div th:if="${orden != null}" style="text-align: left; background: #fafafa; padding: 30px; border-radius: 10px; border-left: 6px solid #1e88e5; margin-top: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                
+                <h3 style="margin-top: 0; color: #333; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 20px;">
+                    Detalles de la Orden <span style="float: right; color: #888; font-size: 0.9rem;" th:text="${orden.numeroOrden}"></span>
+                </h3>
+                
+                <p style="margin-bottom: 12px; color: #555;"><strong>Cliente:</strong> <span th:text="${orden.cliente}"></span></p>
+                <p style="margin-bottom: 12px; color: #555;"><strong>Equipo:</strong> <span th:text="${orden.equipo}"></span></p>
+                <p style="margin-bottom: 25px; color: #555;"><strong>Fecha Estimada:</strong> <span th:text="${orden.fechaEstimada}"></span></p>
+
+                <div style="padding: 15px; border-radius: 8px; text-align: center; font-weight: 800; font-size: 1.1rem; letter-spacing: 1px; text-transform: uppercase;"
+                     th:styleappend="${orden.estado == 'Recibido' ? 'background: #e2e3e5; color: #383d41;' :
+                                     (orden.estado == 'En revision' ? 'background: #fff3cd; color: #856404;' :
+                                     (orden.estado == 'Reparado' ? 'background: #d4edda; color: #155724;' :
+                                     'background: #cce5ff; color: #004085;'))}">
+                    Estado: <span th:text="${orden.estado}"></span>
+                </div>
+            </div>
+            
+        </div>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+        
+    </body>
+</html>
