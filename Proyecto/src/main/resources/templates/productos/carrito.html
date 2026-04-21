@@ -334,16 +334,86 @@ function showToast(msg) {
 }
 
 function checkout() {
-  const total=Object.values(cart).reduce((s,i)=>s+i.product.price*i.qty,0);
-  alert("Pedido confirmado\n\nTotal: "+fmt(total)+"\n\n¡Gracias por comprar en Refill!");
+  const items = Object.values(cart);
+  const total = items.reduce((s,i)=>s+i.product.price*i.qty,0);
+  const numPedido = "REF-" + Date.now().toString().slice(-6);
+
+  const listaHTML = items.map(({product:p, qty}) => `
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f0f8;font-size:0.82rem;">
+      <span style="color:#1a1a2e;font-weight:600;">${p.name} <span style="color:#8888a0;font-weight:400;">x${qty}</span></span>
+      <span style="color:#e91e8c;font-weight:700;">${fmt(p.price*qty)}</span>
+    </div>`).join("");
+
+  document.getElementById("modal-num").textContent = numPedido;
+  document.getElementById("modal-productos").innerHTML = listaHTML;
+  document.getElementById("modal-total").textContent = fmt(total);
+  document.getElementById("modal-overlay").style.display = "flex";
+
   cart={};
   guardarEnStorage();
   updateAll();
+}
+
+function cerrarModal() {
+  document.getElementById("modal-overlay").style.display = "none";
 }
 
 // Iniciar
 cargarDesdeStorage();
 updateAll();
 </script>
+
+<!-- MODAL CONFIRMACIÓN -->
+<div id="modal-overlay" style="
+  display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,0.5); backdrop-filter:blur(4px);
+  z-index:1000; align-items:center; justify-content:center; padding:1rem;
+">
+  <div style="
+    background:white; border-radius:16px; padding:2rem;
+    max-width:460px; width:100%; box-shadow:0 20px 60px rgba(0,0,0,0.2);
+    animation:popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  ">
+    <div style="text-align:center; margin-bottom:1.5rem;">
+      <div style="font-size:3rem; margin-bottom:0.5rem;">✅</div>
+      <h2 style="font-family:'Montserrat',sans-serif; font-weight:900; font-size:1.3rem; color:#1a1a2e; margin:0 0 4px;">¡Compra confirmada!</h2>
+      <p style="font-size:0.8rem; color:#8888a0; margin:0;">Tu pedido fue procesado correctamente</p>
+    </div>
+
+    <div style="background:#f5f6fb; border-radius:10px; padding:1rem; margin-bottom:1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+        <span style="font-size:0.72rem; color:#8888a0; text-transform:uppercase; letter-spacing:0.1em;">Número de pedido</span>
+        <span style="font-family:'Montserrat',sans-serif; font-weight:800; font-size:0.9rem; color:#00bcd4;" id="modal-num"></span>
+      </div>
+      <div id="modal-productos"></div>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:0.75rem 0; border-top:2px solid #f0f0f8; margin-bottom:1.25rem;">
+      <span style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.08em; color:#1a1a2e;">Total pagado</span>
+      <span style="font-family:'Montserrat',sans-serif; font-weight:900; font-size:1.4rem; color:#00c853;" id="modal-total"></span>
+    </div>
+
+    <p style="font-size:0.75rem; color:#8888a0; text-align:center; margin-bottom:1rem;">
+      ¡Gracias por comprar en <strong style="color:#1a1a2e;">R</strong><strong style="color:#00bcd4;">ef</strong><strong style="color:#e91e8c;">i</strong><strong style="color:#ffc107;">ll</strong>!
+    </p>
+
+    <button onclick="cerrarModal()" style="
+      width:100%; padding:13px;
+      background:linear-gradient(135deg,#e91e8c,#00bcd4);
+      border:none; border-radius:10px; color:white;
+      font-family:'Montserrat',sans-serif; font-weight:800;
+      font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase;
+      cursor:pointer;
+    ">Cerrar</button>
+  </div>
+</div>
+
+<style>
+@keyframes popIn {
+  from { opacity:0; transform:scale(0.85); }
+  to   { opacity:1; transform:scale(1); }
+}
+</style>
+
 </body>
 </html>
