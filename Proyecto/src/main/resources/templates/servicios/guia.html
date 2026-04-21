@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{general/fragmentos :: head}"></head>
+
+    <body>
+
+        <header th:replace="~{general/fragmentos :: header}"></header>
+
+        <section class="guia-uso">
+
+            <h1 style="text-align: center; font-size: 2.2rem; margin-bottom: 10px;">Guía de Uso de Productos y Servicios</h1>
+            <p class="guia-subtitulo" style="text-align: center; font-size: 1rem; color: #444; margin-bottom: 30px;">Aprende a usar correctamente tus equipos y cartuchos para sacarles el máximo provecho.</p>
+
+            <!--guia de productos-->
+            <div class="guia-seccion">
+                <h2>Equipos de computo</h2>
+                <ol class="guia-pasos">
+                    <li>Realiza apagados correctos desde el sistema operativo; nunca desconectes directamente la corriente.</li>
+                    <li>Limpia el teclado y pantalla con paños de microfibra levemente húmedos. Nunca uses líquidos directamente.</li>
+                    <li>Conecta el equipo a una fuente de energía estable. Se recomienda usar un regulador de voltaje.</li>
+                    <li>Enciende el equipo presionando el botón de encendido y espera a que cargue el sistema operativo.</li>
+                    <li>Evita colocar el equipo en superficies que bloqueen la ventilación (cojines, telas).</li>
+                    
+                </ol>
+            </div>
+            <!--guia para impresoras-->
+            <div class="guia-seccion">
+                <h2>Cartuchos e impresoras</h2>
+                <ol class="guia-pasos">
+                    <li>Antes de instalar un cartucho, agítalo suavemente (solo en cartuchos de tinta) para homogenizar la tinta.</li>
+                    <li>Retira el precinto o cinta protectora del cartucho antes de insertarlo en la impresora.</li>
+                    <li>Inserta el cartucho firmemente en la ranura correspondiente hasta escuchar un clic.</li>
+                    <li>Realiza una página de prueba desde la configuración de la impresora para verificar que funciona correctamente.</li>
+                    <li>No dejes la impresora sin uso por más de 2 semanas; realiza impresiones periódicas para evitar que la tinta se seque.</li>
+                    <li>Almacena los cartuchos de repuesto en un lugar fresco y seco, lejos de la luz solar directa.</li>
+                </ol>
+            </div>
+
+            <!-- guia de mantenimiento preventivo -->
+            <div class="guia-seccion">
+                <h2>Mantenimiento preventivo</h2>
+                <ol class="guia-pasos">
+                    <li>Mantén actualizados los controladores (drivers) de tu impresora para evitar errores de compatibilidad.</li>
+                    <li>Programa una limpieza interna de tu equipo cada 6 meses para eliminar polvo acumulado.</li>
+                    <li>Si detectas rayas o manchas en las impresiones, ejecuta el ciclo de limpieza de cabezales desde el software de la impresora.</li>
+                    <li>Evita imprimir documentos con fondos negros o de alto consumo de tinta innecesariamente.</li>
+                </ol>
+            </div>
+
+            <div style="background: #e0e0e0; border-radius: 10px; padding: 20px; margin-top: 25px; font-size: 1rem; text-align: center;">
+                ¿Tienes un problema que no está cubierto aquí? <a href="/contacto" style="color: #007BFF; font-weight: bold;">Contáctanos</a> y te ayudaremos.
+            </div> 
+
+        </section>
+
+        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+    </body>
+</html>

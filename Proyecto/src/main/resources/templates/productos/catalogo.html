@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
 <html xmlns:th="http://www.thymeleaf.org">
 
     <head th:replace="~{general/fragmentos :: head}"></head>
@@ -13,96 +9,111 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         <h1 style="text-align:center;">Catálogo de productos</h1>
 
+        <!-- ===== BARRA DE BÚSQUEDA Y FILTROS (HU 15) ===== -->
+        <div class="busqueda-contenedor">
+            <form action="/tienda/buscar" method="get" class="busqueda-form">
 
-        <div class="catalogo" th:fragment="tarjetas">
+                <input
+                    type="text"
+                    name="q"
+                    th:value="${q}"
+                    placeholder="Buscar por nombre o marca..."
+                    class="busqueda-input"
+                    />
 
-            <div class="card">
-                <img th:src="@{/img/dellg15.jpg}">
-                <h3>Portátil Dell G15 5530</h3>
-                <p>₡850,000</p>
-                <button onclick="agregarYIr(1, 'Portátil Dell G15 5530', 850000, '/img/dellg15.jpg')">Añadir al carrito</button>
+                <input
+                    type="number"
+                    name="maxPrecio"
+                    th:value="${maxPrecio}"
+                    placeholder="Precio máximo (₡)"
+                    min="0"
+                    class="busqueda-precio"
+                    />
+
+                <label class="busqueda-check">
+                    <input
+                        type="checkbox"
+                        name="soloDisponibles"
+                        value="true"
+                        th:checked="${soloDisponibles}"
+                        />
+                    Solo disponibles
+                </label>
+
+                <button type="submit" class="busqueda-btn">Buscar</button>
+
+                <!-- Botón para limpiar filtros -->
+                <a th:if="${q != null or maxPrecio != null or (soloDisponibles != null and soloDisponibles)}"
+                   href="/tienda"
+                   class="busqueda-limpiar">Limpiar filtros</a>
+            </form>
+
+            <!-- Mensaje de resultados -->
+            <p th:if="${totalResultados != null}" class="busqueda-resultado-msg">
+                <span th:text="${totalResultados}">0</span> resultado(s)
+                <span th:if="${q != null and !#strings.isEmpty(q)}">
+                    para "<strong th:text="${q}"></strong>"
+                </span>
+            </p>
+        </div>
+
+        <!-- ===== CATÁLOGO DINÁMICO ===== -->
+        <div class="catalogo">
+
+            <!-- Sin resultados -->
+            <div th:if="${#lists.isEmpty(productos)}" class="sin-resultados">
+                <p>No se encontraron productos con esos criterios.</p>
+                <a href="/tienda">Ver todos los productos</a>
             </div>
 
-            <div class="card">
-                <img th:src="@{/img/asusrog.jpg}">
-                <h3>ASUS ROG Strix G16CH</h3>
-                <p>₡775,000</p>
-                <button onclick="agregarYIr(2, 'ASUS ROG Strix G16CH', 775000, '/img/asusrog.jpg')">Añadir al carrito</button>
-            </div>
+            <!-- Tarjetas dinámicas desde la BD -->
+            <div class="card" th:each="p : ${productos}">
 
-            <div class="card">
-                <img th:src="@{/img/hpvictus.jpg}">
-                <h3>Laptop HP Victus</h3>
-                <p>₡750,000</p>
-                <button onclick="agregarYIr(3, 'Laptop HP Victus', 750000, '/img/hpvictus.jpg')">Añadir al carrito</button>
-            </div>
+                <!-- Imagen: si viene de BD como byte[], se convierte a base64 -->
+                <img th:if="${p.imagen != null}"
+                     th:src="@{'data:image/jpeg;base64,' + ${#arrays.toBase64(p.imagen)}}"
+                     th:alt="${p.nombre}" />
+                <img th:unless="${p.imagen != null}"
+                     th:src="@{/img/sin-imagen.jpg}"
+                     th:alt="${p.nombre}" />
 
-            <div class="card">
-                <img th:src="@{/img/epson673.jpg}">
-                <h3>Tinta Epson 673</h3>
-                <p>₡7,000</p>
-                <button onclick="agregarYIr(4, 'Tinta Epson 673', 7000, '/img/epson673.jpg')">Añadir al carrito</button>
-            </div>
+                <h3 th:text="${p.nombre}">Nombre producto</h3>
 
-            <div class="card">
-                <img th:src="@{/img/epsonl4150.jpg}">
-                <h3>Impresora Epson L4150</h3>
-                <p>₡150,000</p>
-                <button onclick="agregarYIr(5, 'Impresora Epson L4150', 150000, '/img/epsonl4150.jpg')">Añadir al carrito</button>
-            </div>
+                <p th:if="${p.marca != null}"
+                   style="font-size:0.85em; color:#666;"
+                   th:text="${p.marca}">Marca</p>
 
-            <div class="card">
-                <img th:src="@{/img/xiaomia24i.jpg}">
-                <h3>Monitor Xiaomi A24i</h3>
-                <p>₡40,900</p>
-                <button onclick="agregarYIr(6, 'Monitor Xiaomi A24i', 40900, '/img/xiaomia24i.jpg')">Añadir al carrito</button>
-            </div>
+                <p th:text="'₡' + ${#numbers.formatDecimal(p.precio, 0, 'COMMA', 0, 'POINT')}">
+                    ₡0
+                </p>
 
-            <div class="card">
-                <img th:src="@{/img/inyecciontinta.jpg}">
-                <h3>Inyección de tinta</h3>
-                <p>₡4,500</p>
-                <button onclick="agregarYIr(7, 'Inyección de tinta', 4500, '/img/inyecciontinta.jpg')">Añadir al carrito</button>
-            </div>
+                <span th:if="${p.disponible}"
+                      style="color:green; font-size:0.8em;">● Disponible</span>
+                <span th:unless="${p.disponible}"
+                      style="color:red; font-size:0.8em;">● Agotado</span>
 
-            <div class="card">
-                <img th:src="@{/img/asus165hz.jpg}">
-                <h3>Monitor 23.8 Asus 165hz</h3>
-                <p>₡120,000</p>
-                <button onclick="agregarYIr(8, 'Monitor 23.8 Asus 165hz', 120000, '/img/asus165hz.jpg')">Añadir al carrito</button>
-            </div>
-
-            <div class="card">
-                <img th:src="@{/img/razerbasilisk.jpg}">
-                <h3>Mouse Razer BASILISK</h3>
-                <p>₡34,000</p>
-                <button onclick="agregarYIr(9, 'Mouse Razer BASILISK', 34000, '/img/razerbasilisk.jpg')">Añadir al carrito</button>
-            </div>
-
-            <div class="card">
-                <img th:src="@{/img/monitorxiaomi.jpg}">
-                <h3>Monitor Xiaomi</h3>
-                <p>₡65,000</p>
-                <button onclick="agregarYIr(10, 'Monitor Xiaomi', 65000, '/img/monitorxiaomi.jpg')">Añadir al carrito</button>
+                <button
+                    th:onclick="'agregarYIr(' + ${p.id} + ', \'' + ${p.nombre} + '\', ' + ${p.precio} + ', \'/img/sin-imagen.jpg\')'">
+                    Añadir al carrito
+                </button>
             </div>
 
         </div>
 
         <script>
-        function agregarYIr(id, nombre, precio, img) {
-            let carrito = JSON.parse(localStorage.getItem('refill_carrito') || '{}');
-            if (carrito[id]) {
-                carrito[id].qty++;
-            } else {
-                carrito[id] = { id: id, name: nombre, price: precio, img: img, qty: 1 };
+            function agregarYIr(id, nombre, precio, img) {
+                let carrito = JSON.parse(localStorage.getItem('refill_carrito') || '{}');
+                if (carrito[id]) {
+                    carrito[id].qty++;
+                } else {
+                    carrito[id] = {id: id, name: nombre, price: precio, img: img, qty: 1};
+                }
+                localStorage.setItem('refill_carrito', JSON.stringify(carrito));
+                window.location.href = '/carrito';
             }
-            localStorage.setItem('refill_carrito', JSON.stringify(carrito));
-            window.location.href = '/carrito';
-        }
         </script>
 
         <footer th:replace="~{general/fragmentos :: footer}"></footer>
 
     </body>
-
 </html>

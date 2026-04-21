@@ -4,11 +4,6 @@
  */
 package com.proyectog3.ProyectoG3.domain;
 
-/**
- *
- * @author paulasteller
- */
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -24,7 +19,7 @@ public class Producto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Long id;
 
     @Column(nullable = false, length = 100)
@@ -32,11 +27,12 @@ public class Producto implements Serializable {
     @Size(max = 100)
     private String nombre;
 
+    @Column(length = 100)
+    private String marca;          // <-- campo nuevo para HU 15
+
     @Lob
     private byte[] imagen;
 
     private Double precio;
-
     private Boolean disponible;
-
 }

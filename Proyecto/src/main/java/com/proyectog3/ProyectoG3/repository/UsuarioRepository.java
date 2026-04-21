@@ -8,13 +8,13 @@ package com.proyectog3.ProyectoG3.repository;
  *
  * @author paulasteller
  */
-
-import com.proyectog3.ProyectoG3.domain.Servicio;
-import java.util.List;
+import com.proyectog3.ProyectoG3.domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ServicioRepository extends JpaRepository<Servicio, Long> {
+import java.util.Optional;
 
-    public List<Servicio> findAll();
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
+    // 🔹 Buscar usuario por correo (para login y recuperación)
+    Optional<Usuario> findByCorreo(String correo);
 }
