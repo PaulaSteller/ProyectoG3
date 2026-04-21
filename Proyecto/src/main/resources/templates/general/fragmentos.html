@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-
 <html xmlns:th="http://www.thymeleaf.org">
 
     <head th:fragment="head">
@@ -28,7 +23,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <li><a href="/resenas">RESEÑAS</a></li>
                 </ul>
 
-                <!-- LADO DERECHO -->
                 <div class="nav-right">
 
                     <div class="search-box">
@@ -61,17 +55,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <footer th:fragment="footer">
 
             <div th:fragment="footer">
-                <!--contacto -->
                 <div class="footer-top">
                     <div class="contact-container">
-                        <!-- los links que se ven a la izquierda-->
                         <div class="contact-text">
                             <h3>Contacto</h3>
                             <p>¿Tienes alguna pregunta?<br>
                                 Ponte en contacto con nosotros.</p>
                         </div>
 
-                        <!-- Para llenar los datos del usuario y que se vea a la derecha-->
                         <div class="contact-form">
                             <form>
                                 <input type="text" placeholder="Nombre" required>
@@ -83,28 +74,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
 
 
-                <!-- La parte de bajo del footer en donde ponemos los link rapidos y las redes sociales -->
                 <div class="footer-bottom">
                     <div class="footer-container">
-                        <!-- El logo de la tienda-->
                         <div class="footer-logo">
                             <img src="/img/logo.png" alt="Refill Logo" class="logo-img">
                             <p>Impresiones & Servicios</p>
                         </div>
 
-                        <!-- Enlaces rápidos -->
                         <div class="footer-links">
                             <h4>Enlaces rápidos</h4>
                             <ul>
-                                <li><a href="#">Inicio</a></li>
-                                <li><a href="#">Tienda</a></li>
-                                <li><a href="#">Ofertas</a></li>
-                                <li><a href="#">Preguntas frecuentes</a></li>
-                                <li><a href="#">Sobre nosotros</a></li>
+                                <li><a href="/">Inicio</a></li>
+                                <li><a href="/tienda">Tienda</a></li>
+                                <li><a href="/tienda">Ofertas</a></li>
+                                <li><a href="/contacto">Preguntas frecuentes</a></li>
+                                <li><a href="/nosotros">Sobre nosotros</a></li>
                             </ul>
                         </div>
 
-                        <!-- Redes sociales -->
                         <div class="footer-social">
                             <h4>Síguenos</h4>
                             <ul>
@@ -116,7 +103,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
 
 
-                        <!-- Sunscripcion para la informacion -->
                         <div class="footer-subscribe">
                             <h4>Mantente informado</h4>
                             <p>Suscríbete para recibir ofertas y novedades</p>
@@ -128,11 +114,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
 
                         <div class="footer-copy">
-                            <p>© 2025 Refill. Todos los derechos reservados.</p>
+                            <p>© 2026 Refill. Todos los derechos reservados.</p>
                         </div>
                     </div>
                 </div>
-
+            </div>
         </footer>
 
     </body>

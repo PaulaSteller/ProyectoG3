@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-    <head th:replace="~{general/fragmentos :: head}">
-        <style>
-            /* Estilos embebidos para la página de pago */
-        </style>
-    </head>
+    <head th:replace="~{general/fragmentos :: head}"></head>
 
     <body>
 
@@ -109,7 +105,6 @@
             .metodo-card.sinpe     .metodo-badge { background:rgba(255,193,7,0.12); color:#e6a800; }
             .metodo-card.paypal    .metodo-badge { background:rgba(26,26,46,0.08);  color:#1a1a2e; }
 
-            /* Sección de info */
             .info-section {
                 background: #ffffff;
                 border: 1px solid #e0e0ee;
@@ -158,7 +153,6 @@
                 margin-bottom: 2px;
             }
 
-            /* CTA */
             .pago-cta {
                 text-align: center;
                 padding: 2rem;
@@ -173,25 +167,28 @@
                 margin-bottom: 1rem;
             }
 
+            /* --- Boton Negro Elegante --- */
             .btn-ir-tienda {
                 display: inline-block;
-                padding: 12px 32px;
-                background: linear-gradient(135deg, #e91e8c, #00bcd4);
+                padding: 14px 32px;
+                background: #000000;
                 color: white;
+                border: 2px solid #000000;
                 border-radius: 10px;
                 text-decoration: none;
                 font-weight: 800;
-                font-size: 0.82rem;
+                font-size: 0.85rem;
                 letter-spacing: 0.08em;
                 text-transform: uppercase;
-                transition: all 0.2s;
-                box-shadow: 0 4px 16px rgba(233,30,140,0.3);
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 14px rgba(0,0,0,0.2);
             }
 
             .btn-ir-tienda:hover {
-                opacity: 0.9;
+                background: #333333;
+                border-color: #333333;
                 transform: translateY(-2px);
-                box-shadow: 0 7px 22px rgba(233,30,140,0.38);
+                box-shadow: 0 6px 18px rgba(0,0,0,0.3);
             }
 
             @media(max-width: 700px) {
