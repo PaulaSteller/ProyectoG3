@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/fragmentos :: head}"></head>
+<body>
+    <header th:replace="~{general/fragmentos :: header}"></header>
+    <div style="max-width: 500px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <h2 th:text="${producto.id == null ? 'Nuevo Producto' : 'Editar Producto'}"></h2>
+        
+        <form action="/admin/guardar" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 15px; margin-top:20px;">
+            <input type="hidden" name="id" th:value="${producto.id}" />
+            
+            <input type="text" name="nombre" th:value="${producto.nombre}" placeholder="Nombre del producto" required style="padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            <input type="text" name="marca" th:value="${producto.marca}" placeholder="Marca" style="padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            <input type="number" name="precio" th:value="${producto.precio}" placeholder="Precio (₡)" required style="padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            
+            <label style="display:flex; align-items:center; gap:5px;">
+                <input type="checkbox" name="disponible" value="true" th:checked="${producto.disponible != null ? producto.disponible : true}" /> Producto en Stock
+            </label>
+
+            <div style="border: 2px dashed #ccc; padding: 15px; text-align: center; border-radius: 6px;">
+                <label style="font-weight:bold; color:#00bcd4;">Sube una imagen (Opcional si editas)</label><br><br>
+                <input type="file" name="archivo" accept="image/*">
+            </div>
+
+            <button type="submit" style="background: #1a1a2e; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer;">Guardar Producto</button>
+            <a href="/admin/inventario" style="text-align: center; color: #e91e8c; text-decoration:none; font-weight:bold;">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

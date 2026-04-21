@@ -1,35 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
     <head th:replace="~{general/fragmentos :: head}"></head>
-
     <body>
-
         <header th:replace="~{general/fragmentos :: header}"></header>
 
+        <div th:if="${mensajeNotificacion != null}" style="background-color: #d4edda; color: #155724; padding: 15px; text-align: center; border-bottom: 2px solid #c3e6cb; font-weight: bold;">
+            <i class="fa-solid fa-bell"></i> <span th:text="${mensajeNotificacion}"></span>
+        </div>
+
         <h1 style="text-align:center; padding-top: 30px; font-family: 'Montserrat', sans-serif; color: #1a1a2e;">
-            Catalogo de productos
+            Catálogo de productos
         </h1>
 
         <div class="busqueda-contenedor">
             <form action="/tienda/buscar" method="get" class="busqueda-form">
                 <input type="text" name="q" th:value="${q}" placeholder="Buscar por nombre o marca..." class="busqueda-input" />
-                <input type="number" name="maxPrecio" th:value="${maxPrecio}" placeholder="Precio maximo (₡)" min="0" class="busqueda-precio" />
+                <input type="number" name="maxPrecio" th:value="${maxPrecio}" placeholder="Precio máximo (₡)" min="0" class="busqueda-precio" />
                 <label class="busqueda-check">
-                    <input type="checkbox" name="soloDisponibles" value="true" th:checked="${soloDisponibles}" />
-                    Solo disponibles
+                    <input type="checkbox" name="soloDisponibles" value="true" th:checked="${soloDisponibles}" /> Solo disponibles
                 </label>
                 <button type="submit" class="busqueda-btn">Buscar</button>
                 <a th:if="${q != null or maxPrecio != null or (soloDisponibles != null and soloDisponibles)}"
                    href="/tienda" class="busqueda-limpiar">Limpiar filtros</a>
             </form>
-
-            <p th:if="${totalResultados != null}" class="busqueda-resultado-msg">
-                <span th:text="${totalResultados}">0</span> resultado(s)
-                <span th:if="${q != null and !#strings.isEmpty(q)}">
-                    para "<strong th:text="${q}"></strong>"
-                </span>
-            </p>
         </div>
 
         <div class="catalogo" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px; max-width: 1400px; margin: 0 auto;">
@@ -40,23 +33,23 @@
             </div>
 
             <div class="card" th:each="p : ${productos}">
-
+                
                 <div style="background:#f7f8fd; border-radius:10px; padding:15px; height:180px; display:flex; align-items:center; justify-content:center; margin-bottom:15px;">
-                    <img th:if="${p.id == 1}" src="/img/dellg15.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
-                    <img th:if="${p.id == 2}" src="/img/asusrog.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
-                    <img th:if="${p.id == 3}" src="/img/hpvictus.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
-                    <img th:if="${p.id == 4}" src="/img/xiaomia24i.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
-                    <img th:if="${p.id == 5}" src="/img/razerbasilisk.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
-                    <img th:if="${p.id == 6}" src="/img/asus165hz.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
-                    <img th:if="${p.id == 7}" src="/img/epson673.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
-                    <img th:if="${p.id == 8}" src="/img/epsonl4150.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
+                    <img th:if="${p.imagen != null}" th:src="@{'/producto/imagen/' + ${p.id}}" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
                     
-                    <img th:if="${p.id > 8}" src="/img/logo.png" th:alt="${p.nombre}" style="max-width:80%; opacity:0.3; filter:grayscale(1);" />
+                    <img th:if="${p.imagen == null and p.id == 1}" src="/img/dellg15.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
+                    <img th:if="${p.imagen == null and p.id == 2}" src="/img/asusrog.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
+                    <img th:if="${p.imagen == null and p.id == 3}" src="/img/hpvictus.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
+                    <img th:if="${p.imagen == null and p.id == 4}" src="/img/xiaomia24i.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
+                    <img th:if="${p.imagen == null and p.id == 5}" src="/img/razerbasilisk.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
+                    <img th:if="${p.imagen == null and p.id == 6}" src="/img/asus165hz.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
+                    <img th:if="${p.imagen == null and p.id == 7}" src="/img/epson673.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
+                    <img th:if="${p.imagen == null and p.id == 8}" src="/img/epsonl4150.jpg" th:alt="${p.nombre}" style="max-width:100%; max-height:100%; object-fit:contain;" />
+                    
+                    <img th:if="${p.imagen == null and p.id > 8}" src="/img/logo.png" th:alt="${p.nombre}" style="max-width:80%; opacity:0.3; filter:grayscale(1);" />
                 </div>
 
                 <h3 th:text="${p.nombre}" style="font-family:'Montserrat',sans-serif; font-size:0.95rem; color:#1a1a2e; margin-bottom:5px;">Nombre</h3>
-                <p th:if="${p.marca != null}" class="marca-texto" th:text="${p.marca}">Marca</p>
-
                 <p class="precio-texto" th:text="'₡' + ${#numbers.formatDecimal(p.precio, 0, 'COMMA', 0, 'POINT')}">₡0</p>
 
                 <div style="margin-bottom:15px;">
@@ -64,24 +57,41 @@
                     <span th:unless="${p.disponible}" class="badge-agotado">● Agotado</span>
                 </div>
 
-                <button class="btn-agregar"
-                        th:data-id="${p.id}"
-                        th:data-nombre="${p.nombre}"
-                        th:data-precio="${p.precio}"
-                        th:data-img="${p.id == 1 ? '/img/dellg15.jpg' : (p.id == 2 ? '/img/asusrog.jpg' : (p.id == 3 ? '/img/hpvictus.jpg' : (p.id == 4 ? '/img/xiaomia24i.jpg' : (p.id == 5 ? '/img/razerbasilisk.jpg' : (p.id == 6 ? '/img/asus165hz.jpg' : (p.id == 7 ? '/img/epson673.jpg' : (p.id == 8 ? '/img/epsonl4150.jpg' : '/img/logo.png')))))))}"
+                <button th:if="${p.disponible}" class="btn-agregar"
+                        th:data-id="${p.id}" th:data-nombre="${p.nombre}" th:data-precio="${p.precio}"
+                        th:data-img="${p.imagen != null ? '/producto/imagen/' + p.id : (p.id == 1 ? '/img/dellg15.jpg' : (p.id == 2 ? '/img/asusrog.jpg' : (p.id == 3 ? '/img/hpvictus.jpg' : (p.id == 4 ? '/img/xiaomia24i.jpg' : (p.id == 5 ? '/img/razerbasilisk.jpg' : (p.id == 6 ? '/img/asus165hz.jpg' : (p.id == 7 ? '/img/epson673.jpg' : (p.id == 8 ? '/img/epsonl4150.jpg' : '/img/logo.png'))))))))}"
                         onclick="agregarYIr(this.getAttribute('data-id'), this.getAttribute('data-nombre'), this.getAttribute('data-precio'), this.getAttribute('data-img'))">
                     Añadir al carrito
                 </button>
-                
-                </button>
-            </div>
 
+                <div th:unless="${p.disponible}" style="background: #fdfaf6; padding: 12px; border-radius: 8px; border: 1px dashed #ffd54f;">
+                    <div th:if="${session.usuario != null}">
+                        <p style="font-size: 0.75rem; font-weight: bold; color: #b08d00; margin-bottom: 8px;">
+                            <i class="fa-solid fa-envelope"></i> ¡Avisame cuando haya stock!
+                        </p>
+                        <form action="/tienda/notificar" method="post" style="display: flex; gap: 5px;">
+                            <input type="hidden" name="productoId" th:value="${p.id}" />
+                            <button type="submit" style="width:100%; background: #1a1a2e; color: white; border: none; border-radius: 6px; padding: 8px 12px; font-weight: bold; cursor: pointer;">
+                                Activar notificación
+                            </button>
+                        </form>
+                    </div>
+                    <div th:unless="${session.usuario != null}">
+                        <a href="/login" style="font-size:0.8rem; font-weight:bold; color:#1a1a2e; text-decoration:none;">Inicia sesión para recibir alertas</a>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         <script>
             function agregarYIr(id, nombre, precio, img) {
                 let carrito = JSON.parse(localStorage.getItem('refill_carrito') || '{}');
                 if (carrito[id]) {
+                    if(carrito[id].qty >= 15) {
+                        alert("Límite alcanzado: 15 unidades por producto.");
+                        return;
+                    }
                     carrito[id].qty++;
                 } else {
                     carrito[id] = {id: id, name: nombre, price: precio, img: img, qty: 1};
@@ -90,8 +100,7 @@
                 window.location.href = '/carrito';
             }
         </script>
-
+        
         <footer th:replace="~{general/fragmentos :: footer}"></footer>
-
     </body>
 </html>

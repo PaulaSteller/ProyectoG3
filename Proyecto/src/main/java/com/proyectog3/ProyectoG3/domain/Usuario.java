@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.proyectog3.ProyectoG3.domain;
 
-/**
- *
- * @author paulasteller
- */
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -26,40 +20,16 @@ public class Usuario {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String rol = "USER"; // Por defecto todos son clientes
+
     public Usuario() {
     }
 
-    public Usuario(String nombre, String correo, String password) {
+    public Usuario(String nombre, String correo, String password, String rol) {
         this.nombre = nombre;
         this.correo = correo;
         this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        this.rol = rol;
     }
 }

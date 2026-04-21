@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/fragmentos :: head}"></head>
+<body>
+    <header th:replace="~{general/fragmentos :: header}"></header>
+    <div style="max-width: 900px; margin: 40px auto; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+            <h2>Panel de Administrador - Inventario</h2>
+            <a href="/admin/nuevo" style="background:#00bcd4; color:white; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:bold;">+ Nuevo Producto</a>
+        </div>
+        
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <tr style="background: #1a1a2e; color: white;">
+                <th style="padding: 12px;">ID</th>
+                <th style="padding: 12px;">Producto</th>
+                <th style="padding: 12px;">Estado</th>
+                <th style="padding: 12px;">Control de Stock</th>
+                <th style="padding: 12px;">Acciones</th>
+            </tr>
+            <tr th:each="p : ${productos}" style="border-bottom: 1px solid #eee;">
+                <td style="padding: 12px;" th:text="${p.id}"></td>
+                <td style="padding: 12px;" th:text="${p.nombre}"></td>
+                <td style="padding: 12px;">
+                    <span th:if="${p.disponible}" style="color: green; font-weight: bold;">En Stock</span>
+                    <span th:unless="${p.disponible}" style="color: red; font-weight: bold;">Agotado</span>
+                </td>
+                <td style="padding: 12px;">
+                    <form th:if="${p.disponible}" action="/admin/agotar" method="post" style="display:inline;">
+                        <input type="hidden" name="id" th:value="${p.id}" />
+                        <button type="submit" style="background:#dc3545; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Agotar</button>
+                    </form>
+                    <form th:unless="${p.disponible}" action="/admin/restablecer" method="post" style="display:inline;">
+                        <input type="hidden" name="id" th:value="${p.id}" />
+                        <button type="submit" style="background:#28a745; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Activar (Envía Correo)</button>
+                    </form>
+                </td>
+                <td style="padding: 12px; display:flex; gap:5px;">
+                    <a th:href="@{/admin/editar/{id}(id=${p.id})}" style="background:#e91e8c; color:white; padding:5px 10px; border-radius:4px; text-decoration:none; font-size:0.8rem;">Editar</a>
+                    <a th:href="@{/admin/eliminar/{id}(id=${p.id})}" style="background:#333; color:white; padding:5px 10px; border-radius:4px; text-decoration:none; font-size:0.8rem;" onclick="return confirm('¿Seguro?');">Borrar</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,35 +1,56 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Historial</title>
-        <link rel="stylesheet" th:href="@{/css/styles.css}">
-    </head>
-    <body>
+<head th:replace="~{general/fragmentos :: head}"></head>
+<body style="background: #f4f5fb;">
 
-        <div th:replace="general/fragmentos :: header"></div>
+    <header th:replace="~{general/fragmentos :: header}"></header>
 
-        <div class="form-container">
-            <h2>Historial de compras</h2>
+    <div style="max-width: 900px; margin: 50px auto; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); min-height: 500px;">
+        
+        <h2 style="font-family: 'Montserrat', sans-serif; color: #1a1a2e; margin-bottom: 25px; text-align: center;">Historial de Compras</h2>
 
-            <table style="width:100%; border-collapse: collapse; margin-top:20px;">
-                <tr>
-                    <th style="border-bottom:1px solid #ccc; padding:10px;">Fecha</th>
-                    <th style="border-bottom:1px solid #ccc; padding:10px;">Total</th>
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead>
+                <tr style="background: #1a1a2e; color: white;">
+                    <th style="padding: 15px; border-radius: 8px 0 0 0;">Fecha de Compra</th>
+                    <th style="padding: 15px;">Productos Adquiridos</th>
+                    <th style="padding: 15px; border-radius: 0 8px 0 0;">Monto Total Pagado</th>
                 </tr>
+            </thead>
+            <tbody id="tabla-historial">
+                </tbody>
+        </table>
 
-                <tr th:each="compra : ${compras}">
-                    <td style="padding:10px;" th:text="${compra.fecha}"></td>
-                    <td style="padding:10px;" th:text="${compra.total}"></td>
-                </tr>
-            </table>
+        <div id="historial-vacio" style="text-align: center; padding: 60px 20px; color: #888; display: none;">
+            <i class="fa-solid fa-box-open" style="font-size: 3rem; color: #ddd; margin-bottom: 15px;"></i>
+            <p>Aún no tienes compras registradas en este dispositivo.</p>
+            <a href="/tienda" style="display: inline-block; margin-top: 10px; color: #00bcd4; text-decoration: none; font-weight: bold;">Ir a la tienda</a>
         </div>
 
-        <div th:replace="general/fragmentos :: footer"></div>
+    </div>
 
-    </body>
+    <script>
+        const historial = JSON.parse(localStorage.getItem('refill_historial') || '[]');
+        const tbody = document.getElementById('tabla-historial');
+        const fmt = n => "₡" + n.toLocaleString("es-CR");
+
+        if(historial.length === 0) {
+            document.getElementById('historial-vacio').style.display = 'block';
+        } else {
+            tbody.innerHTML = historial.map(compra => `
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 15px; color: #555; vertical-align: top;">
+                        <strong style="color: #1a1a2e;">${compra.fecha}</strong><br>
+                        <small style="color:#aaa;">Orden: ${compra.pedido}</small>
+                    </td>
+                    <td style="padding: 15px; color: #333; line-height: 1.6;">${compra.productos}</td>
+                    <td style="padding: 15px; color: #000000; font-weight: 900; font-size: 1.1rem; vertical-align: top;">${fmt(compra.total)}</td>
+                </tr>
+            `).join('');
+        }
+    </script>
+
+    <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+</body>
 </html>

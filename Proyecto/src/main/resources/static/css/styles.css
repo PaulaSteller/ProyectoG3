@@ -79,28 +79,40 @@ body {
 }
 
 .search-box {
-  display: flex;
-  align-items: center;
-  background-color: #f5f5f5;
-  border-radius: 50px;
-  padding: 5px 15px;
-  width: 200px;
+  display: flex !important;
+  align-items: center !important;
+  background-color: #f5f5f5 !important;
+  border-radius: 50px !important;
+  padding: 5px 15px !important;
+  width: 240px !important;
+  border: 1px solid #ddd !important;
+  box-sizing: border-box !important;
+  height: 42px !important;
 }
 
 .search-box input {
-  border: none;
-  background: transparent;
-  padding: 8px 10px;
-  outline: none;
-  flex: 1;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 10px !important;
+  outline: none !important;
+  flex: 1 !important;
+  min-width: 0 !important; 
+  box-shadow: none !important;
+  margin: 0 !important;
+  height: 100% !important;
 }
 
 .search-box button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #333;
-  font-size: 16px;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  color: #333 !important;
+  font-size: 16px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .nav-item {
@@ -111,6 +123,7 @@ body {
   color: #333;
   font-size: 15px;
   transition: 0.2s;
+  white-space: nowrap !important; 
 }
 
 .nav-item i {
@@ -158,10 +171,22 @@ body {
 }
 
 .card {
-  background: #f5f5f5;
-  padding: 20px;
-  border-radius: 10px;
-  width: 250px;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: #00bcd4;
 }
 
 .contacto {
@@ -208,6 +233,75 @@ body {
 
 .producto strong {
   color: #007BFF;
+}
+
+.img-producto {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: #f4f5fb;
+    padding: 10px;
+}
+
+.marca-texto {
+    font-size: 0.85em;
+    color: #8888a0;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+.precio-texto {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #000000; 
+    margin: 10px 0;
+}
+
+.badge-disponible {
+    color: #00c853;
+    font-size: 0.85rem;
+    font-weight: bold;
+    background: rgba(0, 200, 83, 0.1);
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 5px auto;
+}
+
+.badge-agotado {
+    color: #d9534f;
+    font-size: 0.85rem;
+    font-weight: bold;
+    background: rgba(217, 83, 79, 0.1);
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 5px auto;
+}
+
+.btn-agregar {
+    background: #00bcd4;
+    color: #ffffff; 
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px; 
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+}
+
+.btn-agregar:hover {
+    background: #0097a7; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 188, 212, 0.4);
 }
 
 .promociones {
@@ -262,54 +356,65 @@ body {
   flex-wrap: wrap;
 }
 
-/* --- Ajuste 2: Footer Contacto y Suscripcion --- */
 .contact-form input {
   padding: 12px;
   border: none;
-  border-radius: 8px; /* Bordes mas sutiles */
+  border-radius: 8px; 
   width: 80%;
-  margin-bottom: 15px; /* Margen para separarlos */
+  margin-bottom: 15px; 
   display: block;
 }
 
 .contact-form button {
-  background-color: #000000; /* Boton negro */
-  color: #fff;
+  background-color: #28a745; 
+  color: #ffffff; 
   border: none;
   padding: 12px 25px;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
-  transition: opacity 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3); 
 }
 
 .contact-form button:hover {
-    opacity: 0.8;
+    background-color: #218838; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(40, 167, 69, 0.4);
 }
 
+/* --- Ajuste Borde del input Mantente Informado --- */
 .footer-subscribe input {
-    border: 2px solid #000000; /* Borde mas grueso y negro */
+    border: 1px solid #cccccc !important; 
     padding: 12px;
     border-radius: 8px;
     margin-bottom: 12px;
     width: 100%;
     box-sizing: border-box;
+    outline: none;
+}
+
+.footer-subscribe input:focus {
+    border-color: #28a745 !important;
 }
 
 .footer-subscribe button {
-    background: #000000; /* Boton negro */
-    color: white;
+    background: #28a745; 
+    color: #ffffff; 
     border: none;
     padding: 12px 20px;
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
     width: 100%;
-    transition: opacity 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
 }
 
 .footer-subscribe button:hover {
-    opacity: 0.8;
+    background: #218838; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(40, 167, 69, 0.4);
 }
 
 .footer-bottom {
@@ -332,6 +437,30 @@ body {
   margin-top: 40px;
   font-size: 13px;
   color: #ddd;
+}
+
+.footer-links ul, .footer-social ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li, .footer-social li {
+    margin-bottom: 12px;
+}
+
+.footer-links a, .footer-social a {
+    color: #cccccc; 
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.footer-links a:hover, .footer-social a:hover {
+    color: #ffffff; 
+    transform: translateX(8px); 
 }
 
 .form-container {
@@ -379,7 +508,6 @@ body {
   margin-top: 10px;
 }
 
-/* --- Ajuste 3: Barra de busqueda con bordes negros y gruesos --- */
 .busqueda-contenedor {
   max-width: 900px;
   margin: 1rem auto 1.5rem;
@@ -396,7 +524,7 @@ body {
 .busqueda-input {
   flex: 1 1 220px;
   padding: 10px 12px;
-  border: 3px solid #000000; /* Borde grueso negro */
+  border: 3px solid #000000;
   border-radius: 8px;
   font-size: 0.95rem;
   font-weight: bold;
@@ -405,7 +533,7 @@ body {
 .busqueda-precio {
   width: 170px;
   padding: 10px 12px;
-  border: 3px solid #000000; /* Borde grueso negro */
+  border: 3px solid #000000;
   border-radius: 8px;
   font-size: 0.95rem;
   font-weight: bold;
@@ -416,14 +544,14 @@ body {
   align-items: center;
   gap: 0.4rem;
   font-size: 0.9rem;
-  font-weight: bold; /* Checkbox llamativo */
+  font-weight: bold; 
   color: #000000;
   cursor: pointer;
 }
 
 .busqueda-btn {
   padding: 10px 25px;
-  background-color: #000000; /* Boton negro solido */
+  background-color: #000000; 
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -457,161 +585,6 @@ body {
   width: 100%;
 }
 
-/* Estilos para las tarjetas del catalogo */
-.card {
-    background: #ffffff;
-    border-radius: 14px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border: 2px solid transparent;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    border-color: #00bcd4;
-}
-
-.img-producto {
-    width: 100%;
-    height: 160px;
-    object-fit: contain;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    background-color: #f4f5fb;
-    padding: 10px;
-}
-
-.marca-texto {
-    font-size: 0.85em;
-    color: #8888a0;
-    margin-top: -5px;
-    margin-bottom: 10px;
-}
-
-/* --- Ajuste 1: Precios en color negro --- */
-.precio-texto {
-    font-size: 1.3rem;
-    font-weight: 900;
-    color: #000000; /* Rosa cambiado a Negro */
-    margin: 10px 0;
-}
-
-.badge-disponible {
-    color: #00c853;
-    font-size: 0.85rem;
-    font-weight: bold;
-    background: rgba(0, 200, 83, 0.1);
-    padding: 4px 10px;
-    border-radius: 20px;
-    display: inline-block;
-    margin: 5px auto;
-}
-
-.badge-agotado {
-    color: #d9534f;
-    font-size: 0.85rem;
-    font-weight: bold;
-    background: rgba(217, 83, 79, 0.1);
-    padding: 4px 10px;
-    border-radius: 20px;
-    display: inline-block;
-    margin: 5px auto;
-}
-
-/* --- Ajuste 1: Boton Añadir al carrito en negro --- */
-.btn-agregar {
-    background: #000000; /* Fondo negro solido */
-    color: #ffffff; /* Letra blanca */
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px; /* Bordes mas sutiles */
-    font-weight: 800;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 15px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.btn-agregar:hover {
-    background: #333333; /* Gris oscuro al pasar el raton */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-}
-
-/* --- Ajuste: Enlaces rapidos y Siguenos mas llamativos --- */
-.footer-links ul, .footer-social ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-links li, .footer-social li {
-    margin-bottom: 12px;
-}
-
-.footer-links a, .footer-social a {
-    color: #cccccc; /* Gris claro elegante */
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-    display: inline-block;
-    position: relative;
-}
-
-.footer-links a:hover, .footer-social a:hover {
-    color: #ffffff; /* Blanco iluminado */
-    transform: translateX(8px); /* Salto elegante a la derecha */
-}
-
-/* --- Ajuste Anti-Bootstrap para la Barra de Busqueda --- */
-.search-box {
-  display: flex;
-  align-items: center;
-  background-color: #f5f5f5;
-  border-radius: 50px;
-  padding: 5px 15px;
-  width: 230px; /* Un poco mas despacio para que respire */
-  border: 1px solid #ddd;
-}
-
-.search-box input {
-  border: none !important;
-  background: transparent !important;
-  padding: 8px 10px !important;
-  outline: none !important;
-  flex: 1 !important;
-  min-width: 0 !important; /* El secreto para que Bootstrap no lo expanda de mas */
-  box-shadow: none !important;
-}
-
-.search-box button {
-  background: none !important;
-  border: none !important;
-  cursor: pointer !important;
-  color: #333 !important;
-  font-size: 16px !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav-item {
-  white-space: nowrap !important; /* Evita que "Mi cuenta" se rompa en dos lineas */
-}
-
-/* ===== HU 19 — Agendamiento de cita ===== */
 .agendar-contenedor {
   max-width: 580px;
   margin: 1.5rem auto 3rem;
@@ -671,7 +644,6 @@ body {
   background-color: #00bcd4;
 }
 
-/* ===== Confirmación de cita ===== */
 .confirmacion-contenedor {
   display: flex;
   justify-content: center;
