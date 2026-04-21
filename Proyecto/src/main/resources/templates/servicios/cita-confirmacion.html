@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/fragmentos :: head}"></head>
+
+<body>
+
+  <header th:replace="~{general/fragmentos :: header}"></header>
+
+  <div class="confirmacion-contenedor">
+
+    <div class="confirmacion-card">
+
+      <div class="confirmacion-icono">✓</div>
+
+      <h2>¡Cita agendada con éxito!</h2>
+      <p class="confirmacion-sub">Resumen de tu cita</p>
+
+      <div class="confirmacion-detalle">
+        <div class="confirmacion-fila">
+          <span class="confirmacion-label">Cliente</span>
+          <span th:text="${cita.nombreCliente}">Nombre</span>
+        </div>
+        <div class="confirmacion-fila">
+          <span class="confirmacion-label">Correo</span>
+          <span th:text="${cita.correoCliente}">correo@mail.com</span>
+        </div>
+        <div class="confirmacion-fila">
+          <span class="confirmacion-label">Servicio</span>
+          <span th:text="${cita.servicio.nombre}">Servicio</span>
+        </div>
+        <div class="confirmacion-fila">
+          <span class="confirmacion-label">Fecha</span>
+          <span th:text="${#temporals.format(cita.fechaCita, 'dd/MM/yyyy')}">01/01/2026</span>
+        </div>
+        <div class="confirmacion-fila" th:if="${cita.notas != null and !#strings.isEmpty(cita.notas)}">
+          <span class="confirmacion-label">Notas</span>
+          <span th:text="${cita.notas}">Notas</span>
+        </div>
+        <div class="confirmacion-fila">
+          <span class="confirmacion-label">Estado</span>
+          <span class="confirmacion-estado" th:text="${cita.estado}">PENDIENTE</span>
+        </div>
+      </div>
+
+      <div class="confirmacion-acciones">
+        <a href="/servicio/agendar" class="confirmacion-btn-secundario">Agendar otra cita</a>
+        <a href="/" class="confirmacion-btn-principal">Ir al inicio</a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/fragmentos :: head}"></head>
+
+<body>
+
+  <header th:replace="~{general/fragmentos :: header}"></header>
+
+  <h1 style="text-align:center;">Agendar cita</h1>
+
+  <div class="agendar-contenedor">
+
+    <form action="/servicio/agendar" method="post" class="agendar-form">
+
+      <!-- Nombre -->
+      <div class="agendar-campo">
+        <label for="nombreCliente">Nombre completo</label>
+        <input type="text"
+               id="nombreCliente"
+               name="nombreCliente"
+               placeholder="Ej: Juan Pérez"
+               required />
+      </div>
+
+      <!-- Correo -->
+      <div class="agendar-campo">
+        <label for="correoCliente">Correo electrónico</label>
+        <input type="email"
+               id="correoCliente"
+               name="correoCliente"
+               placeholder="Ej: juan@correo.com"
+               required />
+      </div>
+
+      <!-- Tipo de servicio -->
+      <div class="agendar-campo">
+        <label for="servicioId">Tipo de servicio</label>
+        <select id="servicioId" name="servicioId" required>
+          <option value="">-- Seleccioná un servicio --</option>
+          <option th:each="s : ${servicios}"
+                  th:value="${s.id}"
+                  th:text="${s.nombre}">
+            Servicio
+          </option>
+        </select>
+      </div>
+
+      <!-- Fecha -->
+      <div class="agendar-campo">
+        <label for="fechaCita">Fecha de la cita</label>
+        <input type="date"
+               id="fechaCita"
+               name="fechaCita"
+               th:min="${fechaMinima}"
+               required />
+      </div>
+
+      <!-- Notas opcionales -->
+      <div class="agendar-campo">
+        <label for="notas">Descripción del problema <span style="color:#999;">(opcional)</span></label>
+        <textarea id="notas"
+                  name="notas"
+                  rows="3"
+                  placeholder="Describí brevemente el problema con tu equipo..."></textarea>
+      </div>
+
+      <button type="submit" class="agendar-btn">Confirmar cita</button>
+
+    </form>
+
+  </div>
+
+  <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+</body>
+</html>
