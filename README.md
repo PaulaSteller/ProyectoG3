@@ -1,12 +1,12 @@
 # ProyectoG3
 Historia que hicimos 1,2,3,5,6,8,9,10
 
--- Script de Base de Datos para Refill (Proyecto G3)
+
 
 CREATE DATABASE IF NOT EXISTS proyectog3;
 USE proyectog3;
 
--- 1. Tabla de Usuarios
+
 CREATE TABLE usuarios ( 
     id BIGINT AUTO_INCREMENT PRIMARY KEY, 
     nombre VARCHAR(255), 
@@ -14,7 +14,7 @@ CREATE TABLE usuarios (
     password VARCHAR(255) NOT NULL 
 );
 
--- 2. Tabla de Productos (Actualizada para HU 2 y HU 15)
+
 CREATE TABLE producto ( 
     id BIGINT AUTO_INCREMENT PRIMARY KEY, 
     nombre VARCHAR(100) NOT NULL, 
@@ -25,7 +25,7 @@ CREATE TABLE producto (
     imagen LONGBLOB 
 );
 
--- 3. Tabla de Servicios
+
 CREATE TABLE servicio ( 
     id BIGINT AUTO_INCREMENT PRIMARY KEY, 
     nombre VARCHAR(100) NOT NULL, 
@@ -35,7 +35,7 @@ CREATE TABLE servicio (
     imagen LONGBLOB 
 );
 
--- 4. Tabla de Órdenes de Servicio
+
 CREATE TABLE orden_servicio ( 
     id BIGINT AUTO_INCREMENT PRIMARY KEY, 
     numero_orden VARCHAR(50) NOT NULL UNIQUE, 
@@ -45,7 +45,7 @@ CREATE TABLE orden_servicio (
     fecha_estimada DATE 
 );
 
--- INSERCIONES DE DATOS INICIALES --
+
 
 INSERT INTO producto (nombre, marca, descripcion, precio, disponible) VALUES 
 ('Laptop Dell G15', 'Dell', 'Laptop gamer Dell', 850000, 1), 
